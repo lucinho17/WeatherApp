@@ -74,3 +74,42 @@ body{
     margin-bottom: 50px;
 
 }
+
+@media only screen and (max-width: 900px) {
+    #main-container {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #main-container {
+        width: 80%;
+        height: 500px;
+    }
+
+    #submission{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 110px;
+        
+    }
+    #city-input, #fetch-weather-btn{
+        width: 80%;
+    }
+
+    #fetch-weather-btn{
+        height: 50px;
+    }
+}
+
+@media only screen and (max-width: 290px) {
+    #main-container h1{
+        font-size: 20px;
+    }
+
+    #city-details{
+        font-size: 12px;
+    }
+}
