@@ -28,6 +28,13 @@ body{
     align-items: center;
     
 }
+
+#main-container h1{
+    font-size: 2rem;
+    font-weight: 500;
+    color: #0f172a;
+    
+}
 #submission{
     display: flex;
     justify-content: space-around;
@@ -77,6 +84,20 @@ body{
 
 }
 
+#city-details p{
+    font-size: 1.250rem;
+    font-weight: 400;
+    color: #0f172a;
+    margin: 5px;
+}
+
+#city-details img{
+    width: 100px;
+    height: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 #temp-div{
     margin-top: 100px;
     margin-bottom: 100px;
@@ -92,15 +113,24 @@ body{
     align-items: center;
 }
 
+#temp-div h1{
+    font-size: 2rem;
+    font-weight: 500;
+    color: #0f172a;
+    text-align: center;
+}
+
+#temp-bar::-webkit-progress-value {
+  background-color: var(--progress-color, #4caf50);
+}
+
 #temp-bar{
     width: 80%;
     height: 50px;
     
     
 }
-#temp-bar::-webkit-progress-value {
-  background-color: var(--progress-color, #4caf50);
-}
+
 
 
 @media only screen and (max-width: 900px) {
@@ -112,7 +142,11 @@ body{
 @media only screen and (max-width: 600px) {
     #main-container {
         width: 80%;
-        height: 500px;
+        height: 900px;
+    }
+    #temp-div{
+        width: 80%;
+        
     }
 
     #submission{
@@ -133,11 +167,11 @@ body{
 }
 
 @media only screen and (max-width: 290px) {
-    #main-container h1{
+    #main-container h1, #temp-div h1{
         font-size: 20px;
     }
 
-    #city-details{
-        font-size: 12px;
+    #city-details p{
+        font-size: 14px;
     }
 }
