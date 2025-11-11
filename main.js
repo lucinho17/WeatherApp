@@ -10,7 +10,7 @@ async function fetchWeatherData() {
         return
     }
 
-    const url = `https://api.weatherstack.com/current?access_key={YOUR_API_KEY}&query=${city}`;
+    const url = `https://api.weatherstack.com/current?access_key=0bd619a588249dd9cb5622a1781426b6&query=${city}`;
     const options = {
 	method: 'GET'
     };
@@ -21,6 +21,11 @@ async function fetchWeatherData() {
     tempDiv = document.getElementById('temp-div');
     if(tempDiv){
         tempDiv.remove();
+    }
+
+    cityDetailed = document.getElementById('city-detailed');
+    if(cityDetailed){
+        cityDetailed.remove();
     }
 
     try {
@@ -41,36 +46,37 @@ async function fetchWeatherData() {
         parentDiv.appendChild(cityCountry);
 
         let cityTemperature = document.createElement('p');
-        cityTemperature.textContent=`Temperature: ${result.current.temperature} °C`;
+        cityTemperature.id='city-temperature';
+        cityTemperature.textContent=`${result.current.temperature} °C`;
         parentDiv.appendChild(cityTemperature);
 
-        let cityWeatherIcon = document.createElement('img');
-        cityWeatherIcon.src=result.current.weather_icons[0];
-        parentDiv.appendChild(cityWeatherIcon);
+        let cityDetailed = document.createElement('div');
+        cityDetailed.id='city-detailed';
+        document.body.appendChild(cityDetailed);
 
         let citySunrise = document.createElement('p');
         citySunrise.textContent=`Sunrise: ${result.current.astro.sunrise}`;
-        parentDiv.appendChild(citySunrise);
+        cityDetailed.appendChild(citySunrise);
 
         let cityMoonrise = document.createElement('p');
         cityMoonrise.textContent=`Sunrise: ${result.current.astro.moonrise}`;
-        parentDiv.appendChild(cityMoonrise);
+        cityDetailed.appendChild(cityMoonrise);
 
         let cityHumidity = document.createElement('p');
         cityHumidity.textContent=`Humidity: ${result.current.humidity} %`;
-        parentDiv.appendChild(cityHumidity);
+        cityDetailed.appendChild(cityHumidity);
 
         let cityWindSpeed = document.createElement('p');
         cityWindSpeed.textContent=`Wind Speed: ${result.current.wind_speed} km/h`;
-        parentDiv.appendChild(cityWindSpeed);
+        cityDetailed.appendChild(cityWindSpeed);
 
         let cityWindDegree = document.createElement('p');
         cityWindDegree.textContent=`Wind Degree: ${result.current.wind_degree} °`;
-        parentDiv.appendChild(cityWindDegree);
+        cityDetailed.appendChild(cityWindDegree);
 
         let cityUvIndex = document.createElement('p');
         cityUvIndex.textContent=`UV Index: ${result.current.uv_index}`;
-        parentDiv.appendChild(cityUvIndex);
+        cityDetailed.appendChild(cityUvIndex);
 
         let tempDiv = document.createElement('div');
         tempDiv.id='temp-div';
