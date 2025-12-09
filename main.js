@@ -17,6 +17,8 @@ async function fetchWeatherData() {
 
     let parentDiv = document.getElementById('city-details');
     parentDiv.innerHTML='';
+    parentDiv.classList.remove('visible');
+    parentDiv.classList.add('hidden');
 
     tempDiv = document.getElementById('temp-div');
     if(tempDiv){
@@ -31,11 +33,15 @@ async function fetchWeatherData() {
     try {
 	    const response = await fetch(url, options);
         if (!response.ok) {
+            parentDiv.classList.remove('visible');
+            parentDiv.classList.add('hidden');
             throw new Error(`HTTP greška: ${response.status}`);
         }
 	    const result = await response.json();
 	    console.log(result);
 
+        parentDiv.classList.remove('hidden');
+        parentDiv.classList.add('visible');
         
         let cityName = document.createElement('h2');
         cityName.textContent=result.location.name;
@@ -52,7 +58,8 @@ async function fetchWeatherData() {
 
         let cityDetailed = document.createElement('div');
         cityDetailed.id='city-detailed';
-        document.body.appendChild(cityDetailed);
+        let mainContainer = document.getElementById('main-container');
+        mainContainer.appendChild(cityDetailed);
 
         let citySunrise = document.createElement('p');
         citySunrise.textContent=`Sunrise: ${result.current.astro.sunrise}`;
@@ -80,7 +87,7 @@ async function fetchWeatherData() {
 
         let tempDiv = document.createElement('div');
         tempDiv.id='temp-div';
-        document.body.appendChild(tempDiv);
+        mainContainer.appendChild(tempDiv);
 
         let tempLabel = document.createElement('h1');
         tempLabel.textContent='Temperature Gauge';
@@ -92,26 +99,29 @@ async function fetchWeatherData() {
         tempBar.id = 'temp-bar';
         tempDiv.appendChild(tempBar);
 
-        
-
+        let color = '#888';
         if(result.current.temperature < 10){
-            tempBar.style.setProperty("--progress-color", "#1E90FF");
+            color = "#1E90FF";
         }
-
         else if(result.current.temperature < 20 && result.current.temperature >= 10){
-            tempBar.style.setProperty("--progress-color","#00BFFF");
+            color = "#00BFFF";
         }
-
         else if(result.current.temperature < 30 && result.current.temperature >= 20){
-            tempBar.style.setProperty("--progress-color","#7CFC00");
+            color = "#7CFC00";
         }
-
         else if(result.current.temperature < 40 && result.current.temperature >= 30){
-            tempBar.style.setProperty("--progress-color","#FFD700");
+            color = "#FFD700";
         }
         else{
-           tempBar.style.setProperty("--progress-color","#FF4500");
+           color = "#FF4500";
         }
+        
+        const style = document.createElement('style');
+        style.textContent = `
+            #temp-bar::-webkit-progress-value { background-color: ${color}; }
+            #temp-bar::-moz-progress-bar { background-color: ${color}; }
+        `;
+        document.head.appendChild(style);
         
 
             

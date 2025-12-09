@@ -93,6 +93,58 @@ h1 {
     align-items: center;
     width: 100%;
     margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#city-detailed{
+    text-align: center;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+#temp-div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+#temp-bar {
+    width: 80%;
+    height: 25px;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+#temp-bar::-webkit-progress-bar {
+    background-color: #eee;
+}
+
+#temp-bar::-webkit-progress-value {
+    background-color: #888;
+    transition: background-color 0.5s ease;
+}
+
+#temp-bar::-moz-progress-bar {
+    background-color: #888;
+    transition: background-color 0.5s ease;
 }
 
 /* Example of how weather data could be styled */
